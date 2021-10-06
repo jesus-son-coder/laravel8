@@ -30,10 +30,10 @@ class RegisterController extends Controller
         // dd('success validation succeed !');
         User::create($attributes);
 
-        session()->flash('success','Votre compte a bien été créé !');
 
+        // session()->flash('success','Votre compte a bien été créé !');
 
-        return redirect('/');
+        return redirect('/')->with('success','Votre compte a bien été créé !');
 
     }
 }
