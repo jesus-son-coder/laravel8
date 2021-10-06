@@ -26,12 +26,25 @@
                 </a>
             </div>
 
-            <div class="mt-8 md:mt-0">
+            <div class="mt-8 md:mt-0 flex items-center">
                 <a href="/" class="text-xs font-bold uppercase">Espace Clients</a>
 
-                <a href="/register" class="ml-3 rounded-full text-xs font-semibold py-3 px-5" style="background-color: #ff8300;color:white">
-                    Devenez Collectionneur
-                </a>
+                @auth
+                    <span class="text-xs font-bold uppercase">&nbsp;&nbsp;|&nbsp;&nbsp;Bienvenue, {{ auth()->user()->name }} !</span>
+
+                    <form method="POST" action="/logout" class="text-xs font-semibold text-blue-500 ml-6">
+                        @csrf
+                        <button type="submit">Déconnexion</button>
+                    </form>
+                @else
+                    <a href="/login" class="ml-3 rounded-full text-xs font-semibold py-3 px-5" style="background-color: #white;color:black;border:1px solid grey;">
+                        Connexion
+                    </a>
+                    <a href="/register" class="ml-3 rounded-full text-xs font-semibold py-3 px-5" style="background-color: #ff8300;color:white">
+                        Devenez Collectionneur
+                    </a>
+                @endauth
+
             </div>
         </nav>
 
