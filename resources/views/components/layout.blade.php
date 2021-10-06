@@ -29,7 +29,7 @@
             <div class="mt-8 md:mt-0">
                 <a href="/" class="text-xs font-bold uppercase">Espace Clients</a>
 
-                <a href="#" class="ml-3 rounded-full text-xs font-semibold py-3 px-5" style="background-color: #ff8300;color:white">
+                <a href="/register" class="ml-3 rounded-full text-xs font-semibold py-3 px-5" style="background-color: #ff8300;color:white">
                     Devenez Collectionneur
                 </a>
             </div>
