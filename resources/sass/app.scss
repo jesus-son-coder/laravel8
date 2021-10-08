@@ -1,0 +1,36 @@
+$white: white;
+$orangeLc: #ff8300;
+
+body {
+  background-color: $white;
+}
+
+
+.card-primary:not(.card-outline)>.card-header {
+    background-color: $orangeLc;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    background-color: $orangeLc;
+}
+
+.card-primary.card-outline {
+    border-top: 3px solid $orangeLc;
+}
+
+.button-profile {
+    color: orange;
+    background-color: white;
+    border-color: $orangeLc;
+}
+
+.button-profile:hover {
+    color: white;
+    background-color: $orangeLc;
+    border-color: $orangeLc;
+}
+
+.newsletter-block {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

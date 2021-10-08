@@ -1,0 +1,32 @@
+body {
+  background-color: white;
+}
+
+.card-primary:not(.card-outline) > .card-header {
+  background-color: #ff8300;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  background-color: #ff8300;
+}
+
+.card-primary.card-outline {
+  border-top: 3px solid #ff8300;
+}
+
+.button-profile {
+  color: orange;
+  background-color: white;
+  border-color: #ff8300;
+}
+
+.button-profile:hover {
+  color: white;
+  background-color: #ff8300;
+  border-color: #ff8300;
+}
+
+.newsletter-block {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}

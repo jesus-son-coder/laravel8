@@ -51,8 +51,14 @@ class SessionsController extends Controller
         session()->regenerate();
 
         // Redirect to Homepage with a success Flesh message :
-        return redirect('/')->with('success','Welcome back !');
+        return redirect('/profile')->with('success','Welcome back !');
 
+    }
+
+
+    public function profile()
+    {
+        return view('sessions.profile');
     }
 
 }
