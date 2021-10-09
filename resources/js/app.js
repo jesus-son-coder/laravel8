@@ -21,7 +21,7 @@ $(function () {
           processData:false,
           dataType:'json',
           contentType:false,
-          beforeSend:function(){ 
+          beforeSend:function(){
             // vider les messages d'erreur :
             $(document).find('span.error-text').text('');
           },
@@ -39,4 +39,25 @@ $(function () {
           }
         });
     });
+
+    /* Change User Picture : */
+    $(document).on('click', '#change_picture_btn', function() {
+        $('#user_picture').trigger('click');
+    });
+
+    $('#user_picture').ijaboCropTool({
+        preview : '.user_profile_picture',
+        setRatio:1,
+        allowedExtensions: ['jpg', 'jpeg','png'],
+        buttonsText:['CROP','QUIT'],
+        buttonsColor:['#30bf7d','#ee5155', -15],
+        processUrl:'/change-profile-picture',
+        // withCSRF:['_token','{{ csrf_token() }}'],
+        onSuccess:function(message, element, status){
+           alert(message);
+        },
+        onError:function(message, element, status){
+          alert(message);
+        }
+     });
 });

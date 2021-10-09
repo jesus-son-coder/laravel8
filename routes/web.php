@@ -38,3 +38,5 @@ Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth
 Route::get('/profile', [SessionsController::class, 'profile'])->middleware('auth')->name('profile');
 
 Route::post('/update-profile-info', [SessionsController::class, 'updateInfo'])->middleware('auth')->name('updateProfileInfo');
+
+Route::post('/change-profile-picture', [SessionsController::class, 'updatePicture'])->middleware('auth')->name('userPictureUpdate');

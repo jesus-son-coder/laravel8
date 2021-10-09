@@ -22,6 +22,10 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'picture',
+        'presentation',
+        'voyage',
+        'culinaire'
     ];
 
     /**
@@ -53,6 +57,15 @@ class User extends Authenticatable
     public function getUsernameAttribute($username)
     {
         return ucwords($username);
+    }
+
+    public function getPictureAttribute($value)
+    {
+        if($value) {
+            return asset('images/users/'.$value);
+        } else {
+            return asset('images/users/no-image.png');
+        }
     }
 
 }

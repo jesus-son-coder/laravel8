@@ -79,4 +79,40 @@ class SessionsController extends Controller
     }
 
   }
+
+  public function updatePicture(Request $request) {
+    $path = 'images/users/';
+    $file = $request->file('user_picture');
+    // Génération d'un nom unique pour le fichier :
+    $new_name = 'user_img_'.date('Ymd').uniqid() . '.jpg';
+
+    // Upload new image :
+    $upload = $file->move(public_path($path), $new_name);
+
+    if(! $upload) {
+        return response()->json(['status'=>0,'msg'=>'Une erreur s\'est produite...veuillez recommencer !']);
+    } else {
+        // Get Old Picture :
+        $oldPicture = User::find(Auth::user()->id)->getAttributes()['picture'];
+
+        if($oldPicture != '') {
+            if(\File::exists(\public_path($path.$oldPicture))) {
+                \File::delete(\public_path($path.$oldPicture));
+            }
+        }
+
+        // Update DB :
+        $update = User::find(Auth::user()->id)->update(['picture'=>$new_name]);
+
+        if(! $upload) {
+            return response()->json(['status'=>0,'msg'=>'Une erreur s\'est produite...veuillez recommencer !']);
+        } else {
+            return response()->json(['status'=>1, 'msg'=>'Votre image de profil a été mise à jour avec succès !']);
+        }
+    }
+
+  }
+
+
+
 }
