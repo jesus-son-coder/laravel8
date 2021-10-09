@@ -30,9 +30,11 @@ Route::get('register', [RegisterController::class, 'create'])->middleware('guest
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
 
 
-Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
-Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
+Route::get('/login', [SessionsController::class, 'create'])->middleware('guest')->name('login');
+Route::post('/login', [SessionsController::class, 'store'])->middleware('guest')->name('login');;
 
-Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
+Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth')->name('logout');;
 
-Route::get('profile', [SessionsController::class, 'profile'])->middleware('auth');
+Route::get('/profile', [SessionsController::class, 'profile'])->middleware('auth')->name('profile');
+
+Route::post('/update-profile-info', [SessionsController::class, 'updateInfo'])->middleware('auth')->name('updateProfileInfo');

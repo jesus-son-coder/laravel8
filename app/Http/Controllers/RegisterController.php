@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
@@ -25,9 +26,8 @@ class RegisterController extends Controller
             'password' => 'required|min:7|max:255'
         ]);
 
-        $attributes['password'] = bcrypt($attributes['password']);
+        $attributes['password'] = Hash::make($attributes['password']);
 
-        // dd('success validation succeed !');
         $user = User::create($attributes);
 
         // Log in the User :
@@ -35,7 +35,7 @@ class RegisterController extends Controller
 
         // session()->flash('success','Votre compte a bien été créé !');
 
-        return redirect('/')->with('success','Votre compte a bien été créé !');
+        return redirect('/profile')->with('success','Votre compte a bien été créé !');
 
     }
 }

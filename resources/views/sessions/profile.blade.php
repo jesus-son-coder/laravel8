@@ -34,7 +34,7 @@
                     <!--<img class="profile-user-img img-fluid img-circle" src="{{ Auth::user()->picture }}" alt="User profile picture">-->
                   </div>
 
-                  <h3 class="profile-username text-center">{{ Auth::user()->name}}</h3>
+                  <h3 class="profile-username text-center user_name">{{ Auth::user()->name}}</h3>
 
                   <p class="text-muted text-center">Software Engineer</p>
 
@@ -82,35 +82,42 @@
                 <div class="card-body">
                   <div class="tab-content">
                     <div class="active tab-pane" id="personal_info">
-                      <form class="form-horizontal">
+                      <form class="form-horizontal" method="POST" action="{{ route('updateProfileInfo') }}" id="userProfileForm">
+                        @csrf
+
                         <div class="form-group row">
                           <label for="inputName" class="col-sm-2 col-form-label">Nom</label>
                           <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputName" placeholder="Nom" value="{{ Auth::user()->name}}">
+                            <input type="text" class="form-control" id="inputName" name="name" placeholder="Nom" value="{{ Auth::user()->name}}">
+                            <span class="text-danger error-text name_error"></span>
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                           <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputEmail" placeholder="Email" value="{{ Auth::user()->email}}">
+                            <input type="text" class="form-control" id="inputEmail" name="email" placeholder="Email" value="{{ Auth::user()->email}}">
+                            <span class="text-danger error-text email_error"></span>
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="inputName2" class="col-sm-2 col-form-label">Username</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputName2" placeholder="username" value="{{ Auth::user()->username}}">
+                            <input type="text" class="form-control" id="inputUsername" name="username" placeholder="username" value="{{ Auth::user()->username}}">
+                            <span class="text-danger error-text username_error"></span>
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="inputExperience" class="col-sm-2 col-form-label">Expériences Voyages</label>
                           <div class="col-sm-10">
-                            <textarea class="form-control" id="inputExperience" placeholder="expériences..."></textarea>
+                            <textarea class="form-control" id="inputVoyage" name="voyage" placeholder="expériences..."></textarea>
+                            <span class="text-danger error-text voyage_error"></span>
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="inputSkills" class="col-sm-2 col-form-label">Passions culinaires</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputSkills" placeholder="passions...">
+                            <input type="text" class="form-control" id="inputCulinaire" name="culinaire" placeholder="passions...">
+                            <span class="text-danger error-text culinaire_error"></span>
                           </div>
                         </div>
                         <!--
@@ -139,13 +146,13 @@
                           <div class="form-group row">
                             <label for="inputName" class="col-sm-2 col-form-label">Ancien Mot de passe</label>
                             <div class="col-sm-10">
-                              <input type="email" class="form-control" id="oldpassword" placeholder="Saisir votre mot de passe actuel">
+                              <input type="text" class="form-control" id="oldpassword" placeholder="Saisir votre mot de passe actuel">
                             </div>
                           </div>
                           <div class="form-group row">
                             <label for="inputEmail" class="col-sm-2 col-form-label">Nouveau Mot de passe</label>
                             <div class="col-sm-10">
-                              <input type="email" class="form-control" id="newpassword" placeholder="Saisir le nouveau mot de passe">
+                              <input type="text" class="form-control" id="newpassword" placeholder="Saisir le nouveau mot de passe">
                             </div>
                           </div>
                           <div class="form-group row">
