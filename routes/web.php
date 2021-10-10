@@ -43,3 +43,11 @@ Route::post('/change-profile-picture', [SessionsController::class, 'updatePictur
 
 Route::post('change-password', [SessionsController::class, 'changePassword'])->middleware('auth')->name('userChangePassword');
 
+Route::get('password-forgotten', [SessionsController::class, 'showForgottenPassword'])->middleware('guest')->name('password.request');
+
+Route::post('password-forgotten', [SessionsController::class, 'postForgottenPassword'])->middleware('guest')->name('password.email');
+
+Route::get('password-reset/{token}', [SessionsController::class, 'resetPassword'])->middleware('guest')->name('password.reset');
+
+Route::post('password-reset', [SessionsController::class, 'updatePassword'])->middleware('guest')->name('password.update');
+

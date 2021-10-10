@@ -6,11 +6,26 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
+use Illuminate\Auth\Events\PasswordReset;
+
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
+
+
 class SessionsController extends Controller
 {
+
+  protected $redirectTo = RouteServiceProvider::HOME;
+
+  protected function redirectTo()
+  {
+      return view('profile');
+  }
+
   public function destroy()
   {
     auth()->logout();
@@ -151,9 +166,60 @@ class SessionsController extends Controller
             return response()->json(['status'=>1, 'msg'=>'Votre mot de passe a été mis à jour avec succès !']);
         }
     }
+
+  }
+
+  public function showForgottenPassword()
+  {
+    return view('sessions.password-forgotten');
   }
 
 
+  public function postForgottenPassword(Request $request)
+  {
+    $request->validate(['email' => 'required|email']);
 
+    $status = Password::sendResetLink(
+        $request->only('email')
+    );
+
+    return $status === Password::RESET_LINK_SENT
+                // ? back()->with(['status' => __($status)])
+                ? back()->with(['status' => "Nous avons envoyé par e-mail le lien de réinitialisation de votre mot de passe !"])
+                : back()->withErrors(['email' => __($status)]);
+  }
+
+
+  public function resetPassword($token)
+  {
+    return view('sessions.password-reset', ['token' => $token]);
+  }
+
+
+  public function updatePassword(Request $request)
+  {
+    $request->validate([
+        'token' => 'required',
+        'email' => 'required|email',
+        'password' => 'required|min:8|confirmed',
+    ]);
+
+    $status = Password::reset(
+        $request->only('email', 'password', 'password_confirmation', 'token'),
+        function ($user, $password) {
+            $user->forceFill([
+                'password' => Hash::make($password)
+            ])->setRememberToken(Str::random(60));
+
+            $user->save();
+
+            event(new PasswordReset($user));
+        }
+    );
+
+    return $status === Password::PASSWORD_RESET
+                ? redirect()->route('login')->with('status', __($status))
+                : back()->withErrors(['email' => [__($status)]]);
+  }
 
 }
