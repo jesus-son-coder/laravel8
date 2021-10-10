@@ -40,3 +40,6 @@ Route::get('/profile', [SessionsController::class, 'profile'])->middleware('auth
 Route::post('/update-profile-info', [SessionsController::class, 'updateInfo'])->middleware('auth')->name('updateProfileInfo');
 
 Route::post('/change-profile-picture', [SessionsController::class, 'updatePicture'])->middleware('auth')->name('userPictureUpdate');
+
+Route::post('change-password', [SessionsController::class, 'changePassword'])->middleware('auth')->name('userChangePassword');
+

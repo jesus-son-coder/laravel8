@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
@@ -40,7 +41,8 @@ class SessionsController extends Controller
           // Authentication failed :
           // throw new \Exception;
         throw ValidationException::withMessages([
-            'email' => 'Cet email n\'existe pas chez nous !'
+            'email' => 'Les informations saisies ne sont pas correctes',
+            'password' => 'Le mot de passe est incorrect'
           ]);
       }
 
@@ -112,6 +114,45 @@ class SessionsController extends Controller
     }
 
   }
+
+  public function changePassword(Request $request)
+  {
+    $validator = Validator::make($request->all(), [
+        'oldpassword' => [
+            'required', function($attribute, $value, $fail) {
+                if(! Hash::check($value, Auth::user()->password)) {
+                    return $fail(__('Le mot de passe est incorrect'));
+                }
+            },
+            'min:8',
+            'max:30'
+        ],
+        'newpassword' => 'required|min:8|max:30',
+        'cnewpassword' => 'required|same:newpassword',
+    ], [
+        'oldpassword.required'=>'Le mot de passe actuel est obligatoire.',
+
+        'newpassword.required'=>'Le nouveau mot de passe est obligatoire.',
+        'newpassword.min'=>'Le mot de passe doit avoir au moins 3 caractères.',
+        'newpassword.max'=>'Le nouveau mot doit avoir au plus 30 caractères.',
+
+        'cnewpassword.required'=>'La confirmation du mot de passe est obligatoire.',
+        'cnewpassword.same'=>'La confirmation du mot de passe doit correspondre au nouveau mot de passe.',
+    ]);
+
+    if(! $validator->passes() ) {
+        return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
+    } else {
+        $update = User::find(Auth::user()->id)->update(['password'=>Hash::make($request->newpassword)]);
+
+        if(! $update) {
+            return response()->json(['status'=>0, 'msg'=>'Une erreur s\'est produite...veuillez recommencer !']);
+        } else {
+            return response()->json(['status'=>1, 'msg'=>'Votre mot de passe a été mis à jour avec succès !']);
+        }
+    }
+  }
+
 
 
 

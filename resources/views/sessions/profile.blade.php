@@ -142,24 +142,28 @@
                     </div>
                     <!-- /.tab-pane -->
 
+                    <!-- -------------------- Changement de Mot de passe ------------------ -->
                     <div class="tab-pane" id="change_password">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" action="{{ route('userChangePassword') }}" method="POST" id="userChangePasswordForm">
                           <div class="form-group row">
                             <label for="inputName" class="col-sm-2 col-form-label">Ancien Mot de passe</label>
                             <div class="col-sm-10">
-                              <input type="text" class="form-control" id="oldpassword" placeholder="Saisir votre mot de passe actuel">
+                              <input type="password" class="form-control" id="oldpassword" name="oldpassword" placeholder="Saisir votre mot de passe actuel">
+                              <span class="text-danger error-text oldpassword_error"></span>
                             </div>
                           </div>
                           <div class="form-group row">
                             <label for="inputEmail" class="col-sm-2 col-form-label">Nouveau Mot de passe</label>
                             <div class="col-sm-10">
-                              <input type="text" class="form-control" id="newpassword" placeholder="Saisir le nouveau mot de passe">
+                              <input type="text" class="form-control" id="newpassword" name="password" placeholder="Saisir le nouveau mot de passe">
+                              <span class="text-danger error-text newpassword_error"></span>
                             </div>
                           </div>
                           <div class="form-group row">
                             <label for="inputName2" class="col-sm-2 col-form-label">Confirmer le Mot de passe</label>
                             <div class="col-sm-10">
-                              <input type="text" class="form-control" id="cnewpassword" placeholder="Ressaisir le mot de passe">
+                              <input type="text" class="form-control" id="cnewpassword" name="password" placeholder="Ressaisir le mot de passe">
+                              <span class="text-danger error-text cnewpassword_error"></span>
                             </div>
                           </div>
 
