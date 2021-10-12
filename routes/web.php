@@ -26,8 +26,8 @@ Route::get('/components', function () {
 });
 
 
-Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
-Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
+Route::get('register', [RegisterController::class, 'create'])->middleware('guest')->name('register');
+Route::post('register', [RegisterController::class, 'store'])->middleware('guest')->name('userRegister');
 
 
 Route::get('/login', [SessionsController::class, 'create'])->middleware('guest')->name('login');

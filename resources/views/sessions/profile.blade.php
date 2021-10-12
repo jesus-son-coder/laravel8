@@ -63,8 +63,8 @@
                   <p class="text-muted mb-3 experience_voyage">{{ Auth::user()->voyage}}</p>
                   <hr>
 
-                  <strong><i class="fas fa-utensils mr-1 mt-3 userPassion"></i> Passions Culinaires</strong>
-                  <p class="text-muted mb-3">{{ Auth::user()->culinaire}}</p>
+                  <strong><i class="fas fa-utensils mr-1 mt-3 "></i> Passions Culinaires</strong>
+                  <p class="text-muted mb-3 userPassion">{{ Auth::user()->culinaire}}</p>
                 </div>
                 <!-- /.card-body -->
               </div>
