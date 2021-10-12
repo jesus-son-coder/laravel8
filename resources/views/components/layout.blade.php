@@ -57,7 +57,7 @@
         </form>
         @else
         @if (Route::currentRouteName() != 'password.request' && Route::currentRouteName() != 'password.reset')
-            <a href="/login" class="ml-3 rounded-full text-xs font-semibold py-3 px-5" style="background-color: #white;color:black;border:1px solid grey;">
+            <a href="{{ route('login') }}" class="ml-3 rounded-full text-xs font-semibold py-3 px-5" style="background-color: #white;color:black;border:1px solid grey;">
             Connexion
             </a>
             <a href="/register" class="ml-3 rounded-full text-xs font-semibold py-3 px-5" style="background-color: #ff8300;color:white">

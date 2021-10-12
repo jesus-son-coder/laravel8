@@ -33,7 +33,13 @@ $(function () {
                 $('.user_name').each(function() {
                     $(this).html($('#userProfileForm').find($('input[name="name"]')).val());
                 });
-                alert(data.msg);
+                $('.experience_voyage').html($('#userProfileForm').find($('textarea[name="voyage"]')).val());
+                $('.userPresentation').html($('#userProfileForm').find($('textarea[name="presentation"]')).val());
+                $('.user_short_description').html($('#userProfileForm').find($('input[name="short_description"]')).val());
+                $('.userPassion').html($('#userProfileForm').find($('input[name="culinaire"]')).val());
+
+                $('.notification-update').show(0).delay(3000).hide(0);
+                // alert(data.msg);
             }
           }
         });
@@ -53,7 +59,7 @@ $(function () {
         processUrl:'/change-profile-picture',
         // withCSRF:['_token','{{ csrf_token() }}'],
         onSuccess:function(message, element, status){
-           alert(message);
+           // alert(message);
         },
         onError:function(message, element, status){
           alert(message);

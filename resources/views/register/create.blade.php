@@ -1,7 +1,7 @@
 <x-layout>
     <section class="px-6 py-8">
         <main class="max-w-lg mx-auto mt-10 bg-gray-100 p-6 border-gray-200 rounded-xl">
-            
+
             <h1 class="text-center font-bold text-xl">Je crée mon compte</h1>
 
             <form method="POST" action="/register" class="mt-10">
@@ -12,7 +12,7 @@
                     <label class="block mb-2 uppercase font-bold text-xs text-gray-700"
                         for="username"
                     >
-                        Login
+                        Username
                     </label>
 
                     <input class="border border-gray-400 p-2 w-full"

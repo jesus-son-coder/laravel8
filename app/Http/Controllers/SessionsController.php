@@ -60,8 +60,6 @@ class SessionsController extends Controller
             'password' => 'Le mot de passe est incorrect'
           ]);
       }
-
-
   }
 
 
@@ -79,13 +77,27 @@ class SessionsController extends Controller
         // 'email' => 'required|email|unique:users,email,'. Auth::user()->id,
     ]);
 
-
     if($validator->fails()) {
         return response()->json(['status'=>0, 'error'=> $validator->errors()->toArray()]);
     } else {
         $query = User::find(Auth::user()->id)->update([
             'name' => $request->name,
-            'email' => $request->email
+            'email' => $request->email,
+            'username' => $request->username,
+            'gender' => $request->gender,
+            'telephone' => $request->telephone,
+            'presentation' => $request->presentation,
+            'customer_profile' => $request->customer_profile,
+            'short_description' => $request->short_description,
+            'prefered_language' => $request->prefered_language,
+            'fidelity_consent' => $request->fidelity_consent,
+            'fidelity_card' => $request->fidelity_card,
+            'voyage' => $request->voyage,
+            'culinaire' => $request->culinaire,
+            'address' => $request->address,
+            'city' => $request->city,
+            'postal_code' => $request->postal_code,
+            'country' => $request->country,
         ]);
 
         if(!$query) {

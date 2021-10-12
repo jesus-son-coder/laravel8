@@ -14,10 +14,10 @@ class AddPictureAndUserInfosToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('picture');
-            $table->string('presentation');
-            $table->string('voyage');
-            $table->string('culinaire');
+            $table->string('picture')->nullable();
+            $table->string('presentation')->nullable();
+            $table->string('voyage')->nullable();
+            $table->string('culinaire')->nullable();
         });
     }
 

@@ -4,7 +4,7 @@
 
             <h1 class="text-center font-bold text-xl">Je me connecte </h1>
 
-            <form method="POST" action="/login" class="mt-10">
+            <form method="POST" action="{{ route('userLogin') }}" class="mt-10">
 
                 @csrf
 

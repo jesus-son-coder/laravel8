@@ -28,6 +28,8 @@ class RegisterController extends Controller
 
         $attributes['password'] = Hash::make($attributes['password']);
 
+        $attributes['picture'] = 'user-blank.png';
+
         $user = User::create($attributes);
 
         // Log in the User :

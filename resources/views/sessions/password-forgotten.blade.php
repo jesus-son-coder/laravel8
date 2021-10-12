@@ -26,7 +26,7 @@
                         name="email"
                         id="email-forgotten"
                         value="{{ old('email') }}"
-                        placeholder="Saisissez votre mot de passe"
+                        placeholder="Saisissez votre email"
                         required
                     >
 

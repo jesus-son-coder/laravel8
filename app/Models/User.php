@@ -21,12 +21,23 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'username',
+        'gender',
         'email',
         'password',
+        'telephone',
         'picture',
         'presentation',
+        'customer_profile',
+        'short_description',
+        'prefered_language',
+        'fidelity_consent',
+        'fidelity_card',
         'voyage',
-        'culinaire'
+        'culinaire',
+        'address',
+        'city',
+        'postal_code',
+        'country'
     ];
 
     /**
@@ -57,10 +68,12 @@ class User extends Authenticatable
 
     public function getPictureAttribute($value)
     {
-        if($value) {
+        if($value == "user-blank.png") {
+            return asset('images/user-blank.png');
+        } elseif($value){
             return asset('images/users/'.$value);
         } else {
-            return asset('images/users/no-image.png');
+            return asset('images/user-blank.png');
         }
     }
 
